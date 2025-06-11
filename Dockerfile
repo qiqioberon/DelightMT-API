@@ -13,7 +13,7 @@ WORKDIR /app
 # Tahap 3: Salin file requirements.txt dan install dependensi.
 # PERHATIKAN: Pastikan nama file "requirements.txt" sudah benar (dengan 's').
 COPY requirement.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirement.txt
 
 # Tahap 4: Salin seluruh kode proyek Anda (app.py, folder model/, dll.) ke direktori kerja.
 COPY . .
