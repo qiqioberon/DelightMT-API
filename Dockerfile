@@ -11,8 +11,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Tahap 3: Salin file requirements.txt dan install dependensi.
-# Langkah ini dipisah agar Docker dapat menggunakan cache layer. Jika kode Anda berubah
-# tetapi requirements.txt tidak, Docker tidak perlu menginstall ulang semua library.
+# PERHATIKAN: Pastikan nama file "requirements.txt" sudah benar (dengan 's').
 COPY requirement.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -20,20 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Tahap 5: Perintah untuk menjalankan aplikasi saat container dimulai.
-# Platform hosting (seperti Render/Cloud Run) akan menyediakan variabel $PORT.
-# Kita menggunakan Gunicorn sebagai server produksi, bukan server development Flask.
-#
-# Penjelasan Perintah:
-# - gunicorn: Server WSGI untuk produksi.
-# - --bind 0.0.0.0:$PORT: Mengikat server ke semua antarmuka jaringan pada port yang disediakan oleh platform.
-# - --workers 1: Jumlah proses worker. Untuk free-tier dengan CPU terbatas, 1 sudah cukup.
-# - --threads 8: Jumlah thread per worker untuk menangani beberapa request secara bersamaan.
-# - --timeout 0: Menonaktifkan timeout. SANGAT PENTING untuk model ML, karena request pertama
-#   atau request yang kompleks bisa memakan waktu lebih dari 30 detik (default timeout).
-# - app:app: Menjalankan objek 'app' dari file 'app.py'.
-
-# untuk render
-# CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"] 
-
-# untuk google cloud run
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"]
+# Railway, sama seperti Render, akan menyediakan variabel lingkungan $PORT.
+# Jadi, kita harus menggunakan perintah yang mengikat ke port dinamis tersebut.
+CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"]
