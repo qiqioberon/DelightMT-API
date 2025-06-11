@@ -13,7 +13,7 @@ WORKDIR /app
 # Tahap 3: Salin file requirements.txt dan install dependensi.
 # Langkah ini dipisah agar Docker dapat menggunakan cache layer. Jika kode Anda berubah
 # tetapi requirements.txt tidak, Docker tidak perlu menginstall ulang semua library.
-COPY requirements.txt .
+COPY requirement.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Tahap 4: Salin seluruh kode proyek Anda (app.py, folder model/, dll.) ke direktori kerja.
