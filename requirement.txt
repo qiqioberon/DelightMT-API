@@ -1,0 +1,12 @@
+# requirements.txt
+
+# --- Core Frameworks ---
+flask          # Kerangka kerja web untuk membuat API
+gunicorn       # Server produksi untuk menjalankan aplikasi Flask
+
+# --- Machine Learning & Model ---
+# Catatan: transformers akan otomatis menginstall torch jika belum ada,
+# tapi lebih baik menuliskannya secara eksplisit.
+torch          # Library deep learning utama untuk menjalankan model .pt
+transformers   # Library dari Hugging Face untuk memuat arsitektur model (seperti T5) dan tokenizer
+sentencepiece  # WAJIB ADA. Ini adalah library untuk tokenizer (.model dan .vocab)

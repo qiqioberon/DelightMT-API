@@ -1,0 +1,65 @@
+# .gitignore
+
+# 1. Python & Virtual Environments
+# ---------------------------------
+# Direktori cache Python yang dibuat secara otomatis
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Folder virtual environment. Ini SANGAT PENTING untuk diabaikan.
+# Bisa bernama venv, env, .venv, atau nama lain yang Anda gunakan.
+venv/
+env/
+.venv/
+*/.venv/
+*/venv/
+*/env/
+
+# File-file distribusi dan instalasi Python
+*.egg-info/
+dist/
+build/
+
+# 2. File Konfigurasi Editor & IDE
+# ---------------------------------
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# 3. File Sistem Operasi
+# -------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.[Ll]nk
+
+# 4. File Sensitif & Log
+# -------------------------
+# Jangan pernah menyimpan file environment berisi kredensial di Git
+.env
+.env.*
+!.env.example
+
+# File log
+*.log
+logs/
+*.log.*
+
+# 5. File Notebook (jika ada)
+# --------------------------
+.ipynb_checkpoints
