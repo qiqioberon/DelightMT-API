@@ -31,4 +31,9 @@ COPY . .
 # - --timeout 0: Menonaktifkan timeout. SANGAT PENTING untuk model ML, karena request pertama
 #   atau request yang kompleks bisa memakan waktu lebih dari 30 detik (default timeout).
 # - app:app: Menjalankan objek 'app' dari file 'app.py'.
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"]
+
+# untuk render
+# CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"] 
+
+# untuk google cloud run
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "8", "--timeout", "0", "app:app"]
